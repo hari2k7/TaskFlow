@@ -1,0 +1,15 @@
+import pool from './config/db.js'
+
+async function testConnection() {
+    try {
+        const result = await pool.query("SELECT NOW();");
+
+        console.log(result.rows);
+
+        console.log("Database Connected");
+    } catch (err) {
+        console.error(err.message);
+    }
+}
+
+testConnection();
