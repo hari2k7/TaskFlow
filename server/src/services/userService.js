@@ -16,6 +16,15 @@ export async function registerUserService(userData) {
             throw new Error("Password must be atleast 8 charecters");
         }
 
+        const existingUser = await pool.query(
+            "SELECT id FROM users WHERE email = $1",
+            [email]
+        )
+
+        if(existingUser.rows.length > 0){
+            throw new Error("Email already exists")
+        }
+
         const hashedpassword = await bcrypt.hash(password,10)
 
         const result = await pool.query(
@@ -24,4 +33,6 @@ export async function registerUserService(userData) {
             RETURNING id, name, email`,
             [name, email, hashedpassword]
         )
+
+        return result.rows[0];
 }
