@@ -1,8 +1,8 @@
-import { registerUserService } from "../services/userService";
+import { registerUserService } from "../services/userService.js";
 
 export async function registerUser (req, res) {
     try{
-        const user = await registerUser(req,res)
+        const user = await registerUserService(req.body)
 
         return res.status(201).json({
             success: true,
