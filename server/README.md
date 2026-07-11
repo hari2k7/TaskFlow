@@ -13,6 +13,7 @@ A RESTful backend built with Node.js, Express.js, and PostgreSQL featuring JWT a
 - Get Single Task
 - Update Task
 - Delete Task
+- Mark Task as Complete
 
 ## Tech Stack
 
