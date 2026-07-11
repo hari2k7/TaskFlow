@@ -1,5 +1,6 @@
 import pool from '../config/db.js'
 import bcrypt from 'bcrypt'
+import { generateToken } from '../utils/jwt.js';
 
 export async function registerUserService(userData) {
     const { name, email, password } = userData
@@ -51,7 +52,7 @@ export async function loginUserService(userData) {
         [email]
     )
 
-    if(result.rows.length === 0){
+    if (result.rows.length === 0) {
         throw new Error("Invalid email or password")
     }
 
@@ -63,12 +64,15 @@ export async function loginUserService(userData) {
         throw new Error("Invalid credentials")
     }
 
-    const token = generateToken(user.id);
+    const token = generateToken(existingUser);
 
     return {
-        id: existingUser.id,
-        name: existingUser.name,
-        email: existingUser.email
-    };
+        token,
+        user: {
+            id: existingUser.id,
+            name: existingUser.name,
+            email: existingUser.email
+        }
+    }
 
 }

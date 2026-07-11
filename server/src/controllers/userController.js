@@ -22,12 +22,13 @@ export async function registerUser(req, res) {
 
 export async function loginUser(req, res) {
     try {
-        const user = await loginUserService(req.body)
+        const data = await loginUserService(req.body);
 
         return res.status(200).json({
             success: true,
             message: "Login successful",
-            user
+            token: data.token,
+            user: data.user
         });
     } catch (error) {
         return res.status(401).json({

@@ -14,7 +14,7 @@ app.use(logger)
 
 // routes
 app.use("/", taskRoutes);
-app.use("/tasks", taskRoutes)
+app.use("/api/tasks", taskRoutes)
 app.use("completed", taskRoutes)
 app.use('/api/users', userRoutes)
 

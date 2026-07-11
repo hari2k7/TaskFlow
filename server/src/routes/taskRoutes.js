@@ -1,12 +1,23 @@
-import express from 'express'
-import { getTasks } from '../controllers/taskController.js'
+import { Router } from "express";
+import { authenticate } from "../middleware/authMiddleware.js";
+import {
+    createTask,
+    getAllTask,
+    updateTask,
+    deleteTask,
+    getATask
+} from "../controllers/taskController.js";
 
-const router = express.Router()
+const router = Router();
 
-router.get("/tasks",getTasks)
+router.post("/", authenticate, createTask);
 
-router.get("/completed", (req, res) => {
-    res.send("Completed Tasks");
-});
+router.get("/", authenticate, getAllTask);
 
-export default router
+router.put("/:id", authenticate, updateTask);
+
+router.delete("/:id", authenticate, deleteTask);
+
+router.get("/:id", authenticate, getATask);
+
+export default router;
