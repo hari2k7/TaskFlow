@@ -85,3 +85,24 @@ export async function getATaskService(taskId, userId) {
     return result.rows[0]
 
 }
+
+export async function completeTaskService(taskId, completed, userId) {
+
+    if (typeof completed !== "boolean") {
+        throw new Error("Completed must be a boolean");
+    }
+
+    const result = await pool.query(
+        `UPDATE tasks
+        SET completed = $1
+        WHERE id = $2 AND user_id = $3
+        RETURNING *`,
+        [completed, taskId, userId]
+    )
+
+    if (result.rows.length === 0) {
+        throw new Error("Task not found");
+    }
+
+    return result.rows[0]
+}

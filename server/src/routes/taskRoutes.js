@@ -5,7 +5,8 @@ import {
     getAllTask,
     updateTask,
     deleteTask,
-    getATask
+    getATask,
+    completeTask
 } from "../controllers/taskController.js";
 
 const router = Router();
@@ -19,5 +20,7 @@ router.put("/:id", authenticate, updateTask);
 router.delete("/:id", authenticate, deleteTask);
 
 router.get("/:id", authenticate, getATask);
+
+router.patch("/:id/complete", authenticate, completeTask);
 
 export default router;
