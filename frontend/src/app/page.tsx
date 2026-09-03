@@ -1,5 +1,6 @@
 import { Task } from "../types/task";
 import TaskCard from "../components/TaskCard";
+import Link from "next/link";
 
 const tasks: Task[] = [
   {
@@ -33,9 +34,11 @@ export default function Home() {
     <main>
       <h1>TaskFlow</h1>
 
-        {tasks.map((task)=>{
-          return <TaskCard key={task.id} task={task}/>
-        })}
+      <Link href="/dashboard">Go to Dashboard →</Link>
+      
+      {tasks.map((task)=>{
+        return <TaskCard key={task.id} task={task}/>
+      })}
     </main>
   );
 }
