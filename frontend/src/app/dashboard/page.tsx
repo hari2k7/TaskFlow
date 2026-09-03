@@ -4,6 +4,7 @@ import TaskCard from "@/src/components/TaskCard";
 import ProgressCard from "@/src/components/ProgressCard";
 import GoalCard from "@/src/components/GoalCard";
 import HabitCard from "@/src/components/HabitCard";
+import FocusCard from "@/src/components/FocusCard";
 
 const tasks: Task[] = [
     {
@@ -105,6 +106,8 @@ export default function Dashboard() {
                     })}
                 </div>
             </section>
+
+            <FocusCard title="Focus Session" duration={50} />
         </main>
     )
 }
