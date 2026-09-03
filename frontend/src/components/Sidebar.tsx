@@ -3,12 +3,10 @@ import Link from "next/link";
 export default function Sidebar() {
     return (
         <aside className="flex h-screen w-64 flex-col bg-gray-900 p-6 text-white">
-            {/* Logo */}
             <h1 className="text-2xl font-bold">
                 TaskFlow
             </h1>
 
-            {/* Navigation */}
             <nav className="mt-8 flex flex-col gap-1">
                 <Link
                     href="/dashboard"
