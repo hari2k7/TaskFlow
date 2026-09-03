@@ -6,6 +6,7 @@ import GoalCard from "@/src/components/GoalCard";
 import HabitCard from "@/src/components/HabitCard";
 import FocusCard from "@/src/components/FocusCard";
 import UpcomingCard from "@/src/components/UpcomingCard";
+import ProductivityChart from "@/src/components/ProductivityChart";
 
 const tasks: Task[] = [
     {
@@ -71,6 +72,16 @@ const upcomingTasks = [
         title: "Build TaskFlow",
         dueDate: "Sep 15, 2026",
     },
+];
+
+const productivityData = [
+  { day: "Mon", value: 80 },
+  { day: "Tue", value: 95 },
+  { day: "Wed", value: 60 },
+  { day: "Thu", value: 85 },
+  { day: "Fri", value: 70 },
+  { day: "Sat", value: 40 },
+  { day: "Sun", value: 90 },
 ];
 
 export default function Dashboard() {
@@ -142,6 +153,8 @@ export default function Dashboard() {
                     ))}
                 </div>
             </section>
+
+            <ProductivityChart data={productivityData} />
         </main>
     )
 }
