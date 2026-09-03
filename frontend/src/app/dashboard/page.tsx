@@ -2,6 +2,7 @@ import StatCard from "@/src/components/StatCard"
 import { Task } from "@/src/types/task";
 import TaskCard from "@/src/components/TaskCard";
 import ProgressCard from "@/src/components/ProgressCard";
+import GoalCard from "@/src/components/GoalCard";
 
 const tasks: Task[] = [
     {
@@ -52,11 +53,25 @@ export default function Dashboard() {
                     ))}
                 </div>
             </section>
-            <div className="mt-8 rounded-lg border bg-white p-6 shadow-sm">
-                <h2 className="text-lg font-semibold">Today's Progress</h2>
-                <p className="mt-2 text-sm text-gray-500">Percentage:</p>
-                <ProgressCard completed={8} total={12} />
-            </div>
+
+            <ProgressCard completed={8} total={12} />
+            <section className="mt-8">
+                <h2 className="text-xl font-semibold">Goals</h2>
+                <p className="text-sm text-gray-500">Track your progress</p>
+
+                <div className="mt-4 grid grid-cols-1 gap-4 md:grid-cols-2">
+                    <GoalCard
+                        title="Complete Project"
+                        current={8}
+                        target={12}
+                    />
+                    <GoalCard
+                        title="Learn Typescript"
+                        current={6}
+                        target={10}
+                    />
+                </div>
+            </section>
         </main>
     )
 }
