@@ -5,6 +5,7 @@ import ProgressCard from "@/src/components/ProgressCard";
 import GoalCard from "@/src/components/GoalCard";
 import HabitCard from "@/src/components/HabitCard";
 import FocusCard from "@/src/components/FocusCard";
+import UpcomingCard from "@/src/components/UpcomingCard";
 
 const tasks: Task[] = [
     {
@@ -51,6 +52,24 @@ const habits = [
         title: "Exercise",
         streak: 7,
         icon: "🏃",
+    },
+];
+
+const upcomingTasks = [
+    {
+        id: "upcoming-001",
+        title: "Learn TypeScript",
+        dueDate: "Sep 5, 2026",
+    },
+    {
+        id: "upcoming-002",
+        title: "Learn Next.js",
+        dueDate: "Sep 7, 2026",
+    },
+    {
+        id: "upcoming-003",
+        title: "Build TaskFlow",
+        dueDate: "Sep 15, 2026",
     },
 ];
 
@@ -101,13 +120,28 @@ export default function Dashboard() {
                 <p className="text-sm text-gray-500">Keep your streak going</p>
 
                 <div className="mt-4 flex flex-col gap-2">
-                    {habits.map((habit)=>{
+                    {habits.map((habit) => {
                         return <HabitCard key={habit.id} title={habit.title} streak={habit.streak} icon={habit.icon} />
                     })}
                 </div>
             </section>
 
             <FocusCard title="Focus Session" duration={50} />
+
+            <section className="mt-8">
+                <h2 className="text-xl font-semibold">Upcoming</h2>
+                <p className="text-sm text-gray-500">What's coming up</p>
+
+                <div className="mt-4 grid grid-cols-1 gap-4 md:grid-cols-3">
+                    {upcomingTasks.map((task) => (
+                        <UpcomingCard
+                            key={task.id}
+                            title={task.title}
+                            dueDate={task.dueDate}
+                        />
+                    ))}
+                </div>
+            </section>
         </main>
     )
 }
