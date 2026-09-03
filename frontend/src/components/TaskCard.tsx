@@ -8,14 +8,14 @@ interface TaskCardProps {
 
 function getStatusStyle(status: Task["status"]) {
   if (status === "done") {
-    return "bg-green-100 text-green-700";
+    return "bg-green-950/60 text-green-400 border border-green-800/40";
   }
 
   if (status === "in-progress") {
-    return "bg-blue-100 text-blue-700";
+    return "bg-blue-950/60 text-blue-400 border border-blue-800/40";
   }
 
-  return "bg-gray-100 text-gray-700";
+  return "bg-gray-800 text-gray-300 border border-gray-700";
 }
 
 function getStatusLabel(status: Task["status"]) {
@@ -32,14 +32,14 @@ function getStatusLabel(status: Task["status"]) {
 
 function getPriorityStyle(priority: Task["priority"]) {
   if (priority === "high") {
-    return "bg-red-100 text-red-700";
+    return "bg-red-950/60 text-red-400 border border-red-800/40";
   }
 
   if (priority === "medium") {
-    return "bg-yellow-100 text-yellow-700";
+    return "bg-amber-950/60 text-amber-400 border border-amber-800/40";
   }
 
-  return "bg-green-100 text-green-700";
+  return "bg-emerald-950/60 text-emerald-400 border border-emerald-800/40";
 }
 
 function getPriorityLabel(priority: Task["priority"]) {
@@ -56,50 +56,64 @@ function getPriorityLabel(priority: Task["priority"]) {
 
 export default function TaskCard({ task, onDelete, onEdit }: TaskCardProps) {
   return (
-    <div className="rounded-lg border bg-white p-5 shadow-sm">
+    <div className="rounded-xl border border-gray-800 bg-gray-900 p-5 shadow-sm transition hover:border-gray-700 flex flex-col justify-between">
+      <div>
+        <div className="flex items-start justify-between gap-3">
+          <h3 className="font-semibold text-white text-base">
+            {task.title || "Untitled Task"}
+          </h3>
 
-      <div className="flex gap-3">
-        {onEdit && (
-          <button
-            onClick={() => onEdit(task)}
-            className="text-sm text-blue-600 hover:text-blue-800"
-          >
-            Edit
-          </button>
-        )}
+          <div className="flex items-center gap-2">
+            {onEdit && (
+              <button
+                onClick={() => onEdit(task)}
+                className="text-xs text-gray-400 hover:text-blue-400 transition"
+              >
+                Edit
+              </button>
+            )}
 
-        {onDelete && (
-          <button
-            onClick={() => onDelete(task.id)}
-            className="text-sm text-red-600 hover:text-red-800"
-          >
-            Delete
-          </button>
+            {onDelete && (
+              <button
+                onClick={() => onDelete(task.id)}
+                className="text-xs text-gray-400 hover:text-red-400 transition"
+              >
+                Delete
+              </button>
+            )}
+          </div>
+        </div>
+
+        {task.description && (
+          <p className="mt-2 text-sm text-gray-400 leading-relaxed">
+            {task.description}
+          </p>
         )}
       </div>
 
-      <p className="mt-2 text-sm text-gray-600">
-        {task.description}
-      </p>
+      <div className="mt-4 pt-3 border-t border-gray-800/80">
+        <div className="flex items-center justify-between">
+          <div className="flex gap-2 text-xs">
+            <span
+              className={`rounded-full px-2.5 py-0.5 font-medium ${getStatusStyle(task.status)}`}
+            >
+              {getStatusLabel(task.status)}
+            </span>
 
-      <div className="mt-4 flex gap-3 text-sm">
-        <span
-          className={`rounded-full px-3 py-1 text-xs font-medium ${getStatusStyle(task.status)}`}
-        >
-          {getStatusLabel(task.status)}
-        </span>
+            <span
+              className={`rounded-full px-2.5 py-0.5 font-medium ${getPriorityStyle(task.priority)}`}
+            >
+              {getPriorityLabel(task.priority)}
+            </span>
+          </div>
 
-        <span
-          className={`rounded-full px-3 py-1 text-xs font-medium ${getPriorityStyle(task.priority)}`}
-        >
-          {getPriorityLabel(task.priority)}
-        </span>
+          {task.dueDate && (
+            <p className="text-xs text-gray-500">
+              Due: {task.dueDate}
+            </p>
+          )}
+        </div>
       </div>
-
-      <p className="mt-3 text-sm text-gray-500">
-        Due: {task.dueDate}
-      </p>
-
     </div>
   );
 }

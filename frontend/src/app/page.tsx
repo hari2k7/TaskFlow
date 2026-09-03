@@ -31,14 +31,32 @@ const tasks: Task[] = [
 
 export default function Home() {
   return (
-    <main>
-      <h1>TaskFlow</h1>
+    <main className="min-h-screen bg-gray-950 text-white p-8 max-w-5xl mx-auto flex flex-col justify-center">
+      <div className="text-center py-12">
+        <h1 className="text-5xl font-extrabold tracking-tight bg-gradient-to-r from-blue-400 to-indigo-400 bg-clip-text text-transparent">
+          TaskFlow
+        </h1>
+        <p className="mt-4 text-lg text-gray-400 max-w-xl mx-auto">
+          Modern full-stack productivity & task management system. Stay focused, track goals, and build lasting habits.
+        </p>
+        <div className="mt-8">
+          <Link
+            href="/dashboard"
+            className="inline-flex items-center gap-2 rounded-xl bg-blue-600 px-6 py-3 font-semibold text-white shadow-lg transition hover:bg-blue-500"
+          >
+            Open Dashboard →
+          </Link>
+        </div>
+      </div>
 
-      <Link href="/dashboard">Go to Dashboard →</Link>
-      
-      {tasks.map((task)=>{
-        return <TaskCard key={task.id} task={task}/>
-      })}
+      <div className="mt-8">
+        <h2 className="text-lg font-semibold text-gray-300 mb-4">Sample Tasks Preview</h2>
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+          {tasks.map((task) => (
+            <TaskCard key={task.id} task={task} />
+          ))}
+        </div>
+      </div>
     </main>
   );
 }
