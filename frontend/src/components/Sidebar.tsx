@@ -2,7 +2,7 @@ import Link from "next/link";
 
 export default function Sidebar() {
     return (
-        <aside className="flex h-screen w-64 flex-col bg-gray-900 p-6 text-white">
+        <aside className="fixed left-0 top-0 flex h-screen w-64 flex-col bg-gray-900 p-6 text-white">
             <h1 className="text-2xl font-bold">
                 TaskFlow
             </h1>
@@ -65,15 +65,9 @@ export default function Sidebar() {
                 </Link>
             </nav>
 
-            {/* User section */}
-            <div className="mt-auto border-t border-gray-700 pt-4">
-                <p className="text-sm text-gray-400">
-                    Signed in as
-                </p>
-
-                <p className="font-medium">
-                    UserName
-                </p>
+            <div className="mt-auto">
+                <p className="text-sm text-gray-400">Signed in as</p>
+                <p>UserName</p>
             </div>
         </aside>
     );

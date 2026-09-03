@@ -3,6 +3,7 @@ import { Task } from "@/src/types/task";
 import TaskCard from "@/src/components/TaskCard";
 import ProgressCard from "@/src/components/ProgressCard";
 import GoalCard from "@/src/components/GoalCard";
+import HabitCard from "@/src/components/HabitCard";
 
 const tasks: Task[] = [
     {
@@ -28,6 +29,27 @@ const tasks: Task[] = [
         status: "todo",
         priority: "high",
         dueDate: "2026-09-15",
+    },
+];
+
+const habits = [
+    {
+        id: "habit-001",
+        title: "Drink Water",
+        streak: 5,
+        icon: "💧",
+    },
+    {
+        id: "habit-002",
+        title: "Read",
+        streak: 3,
+        icon: "📚",
+    },
+    {
+        id: "habit-003",
+        title: "Exercise",
+        streak: 7,
+        icon: "🏃",
     },
 ];
 
@@ -70,6 +92,17 @@ export default function Dashboard() {
                         current={6}
                         target={10}
                     />
+                </div>
+            </section>
+
+            <section className="mt-8">
+                <h2 className="text-xl font-semibold">Today's Habits</h2>
+                <p className="text-sm text-gray-500">Keep your streak going</p>
+
+                <div className="mt-4 flex flex-col gap-2">
+                    {habits.map((habit)=>{
+                        return <HabitCard key={habit.id} title={habit.title} streak={habit.streak} icon={habit.icon} />
+                    })}
                 </div>
             </section>
         </main>
